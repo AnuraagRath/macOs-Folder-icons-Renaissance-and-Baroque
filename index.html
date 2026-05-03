@@ -7,15 +7,18 @@
 
 <style>
 :root {
-  --bg: #0f0f10;
-  --text: #ffffff;
-  --card: rgba(255,255,255,0.06);
+  --bg: #1a1410;
+  --text: #f5efe6;
+  --card: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.08);
 }
 
+/* 🌞 Light Mode */
 .light {
-  --bg: #f5f5f7;
-  --text: #111;
-  --card: rgba(0,0,0,0.05);
+  --bg: #f5f1ea;
+  --text: #1a1410;
+  --card: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(0, 0, 0, 0.08);
 }
 
 body {
@@ -27,105 +30,146 @@ body {
   overflow-x: hidden;
 }
 
-/* 🌈 Animated Gradient Background */
+/* 🎨 Sierra Brown Artistic Background */
 body::before {
   content: "";
   position: fixed;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460, #533483);
-  animation: gradientMove 18s infinite linear;
-  z-index: -1;
+  inset: 0;
+  z-index: -2;
+
+  background:
+    radial-gradient(circle at 20% 30%, rgba(120, 70, 30, 0.35), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(90, 50, 20, 0.35), transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(40, 25, 10, 0.7), transparent 70%),
+    linear-gradient(135deg, #1a1410, #2a1d14, #3a2618);
 }
 
-@keyframes gradientMove {
-  0% { transform: translate(0,0); }
-  50% { transform: translate(-25%, -25%); }
-  100% { transform: translate(0,0); }
+/* 🖌️ Canvas Texture Overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url("https://www.transparenttextures.com/patterns/canvas.png");
+  opacity: 0.15;
+  mix-blend-mode: overlay;
 }
 
 header {
   text-align: center;
-  padding: 40px 20px;
+  padding: 50px 20px;
 }
 
-h1 { font-size: 2.6rem; margin: 0; }
-p { opacity: 0.7; }
+h1 {
+  font-size: 2.6rem;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
 
+p {
+  opacity: 0.75;
+}
+
+/* 🎛️ Controls */
 .controls {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 12px;
+  margin-top: 25px;
   flex-wrap: wrap;
 }
 
 button {
-  border: none;
-  padding: 10px 16px;
-  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  padding: 10px 18px;
+  border-radius: 999px;
   cursor: pointer;
   background: var(--card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: var(--text);
-  transition: 0.2s;
+  transition: 0.25s ease;
 }
 
 button:hover {
-  transform: scale(1.05);
+  transform: translateY(-2px) scale(1.05);
+  background: rgba(255,255,255,0.12);
 }
 
-/* 🧱 Masonry */
+/* 🧱 Masonry Layout */
 .grid {
   column-count: 4;
-  column-gap: 16px;
+  column-gap: 18px;
   max-width: 1200px;
   margin: auto;
-  padding: 20px;
+  padding: 30px 20px;
 }
 
 @media (max-width: 900px) {
   .grid { column-count: 2; }
 }
 
+/* 🧊 Glass Cards */
 .card {
   break-inside: avoid;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
+  padding: 10px;
+  border-radius: 18px;
+
   background: var(--card);
-  border-radius: 16px;
-  padding: 8px;
-  position: relative;
-  transition: 0.3s;
+  border: 1px solid var(--glass-border);
+
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+
+  box-shadow:
+    0 8px 30px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+
+  transition: 0.3s ease;
 }
 
 .card:hover {
-  transform: scale(1.03);
+  transform: translateY(-6px) scale(1.04);
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
+/* 🖼️ Images */
 img {
   width: 100%;
   border-radius: 12px;
   cursor: pointer;
+  display: block;
 }
 
-/* Download button */
+/* ⬇️ Download Button */
 .download {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 12px;
+  right: 12px;
   font-size: 12px;
-  background: black;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(6px);
   color: white;
-  padding: 4px 8px;
+  padding: 5px 9px;
   border-radius: 8px;
   text-decoration: none;
+  transition: 0.2s;
 }
 
-/* Modal */
+.download:hover {
+  background: black;
+}
+
+/* 🔍 Modal */
 .modal {
   position: fixed;
   inset: 0;
   display: none;
-  background: rgba(0,0,0,0.95);
+  background: rgba(10, 6, 3, 0.95);
+  backdrop-filter: blur(10px);
   align-items: center;
   justify-content: center;
 }
@@ -133,13 +177,16 @@ img {
 .modal img {
   max-width: 90%;
   max-height: 90%;
-  border-radius: 12px;
+  border-radius: 14px;
+  box-shadow: 0 20px 80px rgba(0,0,0,0.8);
 }
 
+/* 🦶 Footer */
 footer {
   text-align: center;
-  padding: 40px;
+  padding: 50px;
   opacity: 0.6;
+  font-size: 0.9rem;
 }
 </style>
 </head>
