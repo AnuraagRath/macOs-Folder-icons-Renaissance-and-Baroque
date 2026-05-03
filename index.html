@@ -9,16 +9,16 @@
 :root {
   --bg: #1a1410;
   --text: #f5efe6;
-  --card: rgba(255, 255, 255, 0.06);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  --card: rgba(255,255,255,0.08);
+  --glass-border: rgba(255,255,255,0.12);
 }
 
-/* 🌞 Light Mode */
+/* Light Mode */
 .light {
   --bg: #f5f1ea;
   --text: #1a1410;
-  --card: rgba(255, 255, 255, 0.6);
-  --glass-border: rgba(0, 0, 0, 0.08);
+  --card: rgba(255,255,255,0.6);
+  --glass-border: rgba(0,0,0,0.1);
 }
 
 body {
@@ -26,196 +26,186 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--text);
   background: var(--bg);
-  transition: 0.3s;
   overflow-x: hidden;
 }
 
-/* 🎨 Sierra Brown Artistic Background */
+/* Background */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -2;
-
   background:
-    radial-gradient(circle at 20% 30%, rgba(120, 70, 30, 0.35), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(90, 50, 20, 0.35), transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(40, 25, 10, 0.7), transparent 70%),
+    radial-gradient(circle at 20% 30%, rgba(120,70,30,0.35), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(90,50,20,0.35), transparent 40%),
     linear-gradient(135deg, #1a1410, #2a1d14, #3a2618);
 }
 
-/* 🖌️ Canvas Texture Overlay */
+/* Texture */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   background-image: url("https://www.transparenttextures.com/patterns/canvas.png");
-  opacity: 0.15;
-  mix-blend-mode: overlay;
+  opacity: 0.12;
 }
 
+/* Header */
 header {
   text-align: center;
-  padding: 50px 20px;
+  padding: 40px 20px;
 }
 
 h1 {
-  font-size: 2.6rem;
+  font-size: 2.4rem;
   margin: 0;
-  letter-spacing: 0.5px;
 }
 
 p {
   opacity: 0.75;
 }
 
-/* 🎛️ Controls */
+/* Controls */
 .controls {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  margin-top: 25px;
+  gap: 10px;
   flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 button {
   border: 1px solid var(--glass-border);
-  padding: 10px 18px;
+  padding: 10px 16px;
   border-radius: 999px;
-  cursor: pointer;
   background: var(--card);
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   color: var(--text);
-  transition: 0.25s ease;
+  cursor: pointer;
+  transition: 0.25s;
 }
 
 button:hover {
   transform: translateY(-2px) scale(1.05);
-  background: rgba(255,255,255,0.12);
 }
 
-/* 🧱 Masonry Layout */
+/* Grid */
 .grid {
-  column-count: 4;
-  column-gap: 18px;
-  max-width: 1200px;
+  column-count: 3;
+  column-gap: 16px;
+  max-width: 1100px;
   margin: auto;
-  padding: 30px 20px;
+  padding: 20px;
 }
 
 @media (max-width: 900px) {
   .grid { column-count: 2; }
 }
 
+@media (max-width: 600px) {
+  .grid { column-count: 1; }
+  h1 { font-size: 2rem; }
+}
+
+/* Card */
 .card {
   break-inside: avoid;
   margin-bottom: 18px;
-  padding: 10px;
+  padding: 12px;
   border-radius: 20px;
   position: relative;
   overflow: hidden;
 
   background: linear-gradient(
     145deg,
-    rgba(255,255,255,0.12),
-    rgba(255,255,255,0.04)
+    rgba(255,255,255,0.15),
+    rgba(255,255,255,0.05)
   );
 
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid var(--glass-border);
 
   backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-
   box-shadow:
     0 10px 40px rgba(0,0,0,0.5),
-    inset 0 1px 0 rgba(255,255,255,0.25),
-    inset 0 -2px 6px rgba(0,0,0,0.3);
-
-  transition: all 0.35s ease;
+    inset 0 1px 0 rgba(255,255,255,0.25);
 }
 
-/* ✨ Gloss highlight layer */
+/* Gloss effect */
 .card::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
-
   background: linear-gradient(
     120deg,
-    rgba(255,255,255,0.35) 0%,
-    rgba(255,255,255,0.08) 30%,
+    rgba(255,255,255,0.35),
     transparent 60%
   );
-
-  opacity: 0.6;
-  pointer-events: none;
+  opacity: 0.5;
 }
 
-/* 🌟 Hover = more "liquid" feel */
 .card:hover {
-  transform: translateY(-8px) scale(1.04);
-
-  box-shadow:
-    0 25px 60px rgba(0,0,0,0.7),
-    inset 0 1px 0 rgba(255,255,255,0.35),
-    inset 0 -3px 8px rgba(0,0,0,0.4);
+  transform: translateY(-6px) scale(1.03);
 }
 
-  
-/* 🖼️ Images */
+/* Image */
 img {
   width: 100%;
   border-radius: 12px;
-  cursor: pointer;
   display: block;
 }
 
-/* ⬇️ Download Button */
+/* Download */
 .download {
   position: absolute;
-  bottom: 12px;
-  right: 12px;
-  font-size: 12px;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(6px);
+  bottom: 10px;
+  right: 10px;
+
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0,0,0,0.75);
+  border-radius: 10px;
   color: white;
-  padding: 5px 9px;
-  border-radius: 8px;
   text-decoration: none;
-  transition: 0.2s;
 }
 
-.download:hover {
-  background: black;
-}
-
-/* 🔍 Modal */
+/* Modal */
 .modal {
   position: fixed;
   inset: 0;
   display: none;
-  background: rgba(10, 6, 3, 0.95);
+  background: rgba(10,6,3,0.95);
   backdrop-filter: blur(10px);
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .modal img {
   max-width: 90%;
-  max-height: 90%;
-  border-radius: 14px;
-  box-shadow: 0 20px 80px rgba(0,0,0,0.8);
+  max-height: 80%;
+  border-radius: 12px;
 }
 
-/* 🦶 Footer */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* Footer */
 footer {
   text-align: center;
-  padding: 50px;
+  padding: 40px;
   opacity: 0.6;
-  font-size: 0.9rem;
 }
 </style>
 </head>
@@ -230,13 +220,14 @@ footer {
     <button onclick="render('all')">All</button>
     <button onclick="render('warm')">🔥 Warm</button>
     <button onclick="render('cool')">❄️ Cool</button>
-    <button onclick="toggleTheme()">🎭 Toggle Theme</button>
+    <button onclick="toggleTheme()">🎭 Theme</button>
   </div>
 </header>
 
 <div class="grid" id="gallery"></div>
 
-<div class="modal" id="modal" onclick="closeModal()">
+<div class="modal" id="modal">
+  <span class="close-btn" onclick="closeModal()">✕</span>
   <img id="modalImg">
 </div>
 
@@ -307,30 +298,6 @@ function openModal(index){
 
 function closeModal(){
   modal.style.display = "none";
-}
-
-/* 📱 Swipe */
-let startX = 0;
-
-modal.addEventListener("touchstart", e => {
-  startX = e.touches[0].clientX;
-});
-
-modal.addEventListener("touchend", e => {
-  let endX = e.changedTouches[0].clientX;
-
-  if(startX - endX > 50) next();
-  if(endX - startX > 50) prev();
-});
-
-function next(){
-  currentIndex = (currentIndex + 1) % images.length;
-  modalImg.src = images[currentIndex];
-}
-
-function prev(){
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  modalImg.src = images[currentIndex];
 }
 
 function toggleTheme(){
